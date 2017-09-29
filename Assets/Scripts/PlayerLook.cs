@@ -34,7 +34,5 @@ public class PlayerLook : MonoBehaviour {
         //-----------------------------------
         print("Local rotation" + camera.transform.localRotation.x);
         print("Rotation" + camera.transform.rotation.x);
-
-
     }
 }
