@@ -17,7 +17,6 @@ public class PlayerLook : MonoBehaviour {
         transform.Rotate(Vector3.up * xspeed * sensitivity * Time.deltaTime);
 
         float yspeed = Input.GetAxis("Mouse Y"); //looking up and down
-        print(camera.transform.eulerAngles.x);
         camera.transform.Rotate(Vector3.left * yspeed * sensitivity * Time.deltaTime); //rotate camera
         
             
