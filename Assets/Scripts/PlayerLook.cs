@@ -32,7 +32,7 @@ public class PlayerLook : MonoBehaviour {
         Quaternion localRotation = Quaternion.Euler(yRotation, 0, 0);
         camera.transform.localRotation = localRotation;
         //-----------------------------------
-        print("Local rotation" + camera.transform.localRotation.x);
-        print("Rotation" + camera.transform.rotation.x);
+        //print("Local rotation" + camera.transform.localRotation.x);
+        //print("Rotation" + camera.transform.rotation.x);
     }
 }
