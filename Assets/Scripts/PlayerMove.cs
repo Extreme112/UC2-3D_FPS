@@ -16,18 +16,17 @@ public class PlayerMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (characterController.isGrounded) {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
 
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection *= speed;
-
-        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded) {
-            moveDirection.y = jumpSpeed; //then we will jump
+            if (Input.GetButton("Jump")) {
+                moveDirection.y = jumpSpeed; //then we will jump
+            }
         }
 
         moveDirection.y -= gravity * Time.deltaTime; //add gravity
         characterController.Move(moveDirection * Time.deltaTime);  
     }
-
-
 }
