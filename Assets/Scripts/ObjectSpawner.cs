@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour {
     public GameObject objToSpawn;
-    int count;
-    float delay;
+    public int count;
+    public float delay;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(SpawnObject());

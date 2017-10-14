@@ -11,12 +11,11 @@ public class AIMove : MonoBehaviour {
 	void Start () {
         nav = GetComponent<NavMeshAgent>(); //setup of AI Movement
         player = GameObject.FindGameObjectWithTag("Player"); //make sure to Tag 
-        //set the enemy's destination to the players position
-        nav.SetDestination(player.transform.position); 
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        //set the enemy's destination to the players position
+        nav.SetDestination(player.transform.position);
+    }
 }

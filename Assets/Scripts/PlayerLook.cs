@@ -10,10 +10,6 @@ public class PlayerLook : MonoBehaviour {
     float yRotation;
     //--------------------------
 
-    // -- fix looking up without over rotating
-    Vector3 originalRotation;
-    float yRotation;
-
     // Use this for initialization
     void Start () {
         // -- Looking up and down
