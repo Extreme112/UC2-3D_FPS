@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
+
     public string wepName;
     public int damage;
-    public Camera mainCamera;
+    public GameObject oCamera;
     public float range;
-    public GameObject impactEffect;
+    //reload speed, fireRate, ammo count
 
-    private void Start() {
-
-    }
-
-    private void Update() {
+	// Update is called once per frame
+	void Update () {
+        //----SHOOOTING------------
         if (Input.GetButtonDown("Fire1")) {
             RaycastHit hit;
-            if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, range)) {
-                print(hit.transform.name);
-                Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                print(hit.collider.gameObject.name);
+            if (Physics.Raycast(oCamera.transform.position, oCamera.transform.forward, out hit, range)) {
+                //  ----------Deal damage to an enemy-------
+                if (hit.collider.CompareTag("Enemy")) {
+                    EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+                    enemyHealth.TakeDamage(damage);
+                }
             }
         }
     }

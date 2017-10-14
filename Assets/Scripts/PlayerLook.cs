@@ -10,6 +10,10 @@ public class PlayerLook : MonoBehaviour {
     float yRotation;
     //--------------------------
 
+    // -- fix looking up without over rotating
+    Vector3 originalRotation;
+    float yRotation;
+
     // Use this for initialization
     void Start () {
         // -- Looking up and down
@@ -20,7 +24,7 @@ public class PlayerLook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        //This rotates sideways
         float xspeed = Input.GetAxis("Mouse X"); //get how fast you are moving your mouse horizontally
         transform.Rotate(Vector3.up * xspeed * sensitivity * Time.deltaTime);
 
