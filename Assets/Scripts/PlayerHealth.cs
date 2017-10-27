@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour {
         audioSource.Play();
         if (currentHealth <= 0) {
             //What do we do when player dies? Put code here.
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Menu");
         }
     }
 }
