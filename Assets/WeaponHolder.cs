@@ -13,7 +13,23 @@ public class WeaponHolder : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (selectedWeapon == weapons.Length - 1) {
+                selectedWeapon = 0;
+            } else {
+                selectedWeapon++;
+            }
+            SwitchWeapon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            if (selectedWeapon == 0) {
+                selectedWeapon = weapons.Length - 1;
+            } else {
+                selectedWeapon--;
+            }
+            SwitchWeapon();
+        }
 	}
 
     void SwitchWeapon() {
