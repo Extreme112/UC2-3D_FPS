@@ -11,14 +11,15 @@ public class Weapon : MonoBehaviour {
     //Effects
     public GameObject bulletImpact;
     public ParticleSystem muzzleFlash;
-    private AudioSource audioSource; //audiosource
+    private AudioSource audioSource;
     //Fire Rate
     bool canFire = true;
     public float shootDelay = 2;
 
-    //
+    //Check for automatic fire
     public bool isAutomatic = false;
 
+    //Ammo
     public int ammo;
     public int maxClipSize;
     private int currentClipSize;
@@ -26,12 +27,10 @@ public class Weapon : MonoBehaviour {
     void Start() {
         audioSource = GetComponent<AudioSource>();
         ammo = maxClipSize * 2;
-        //currentClipSize = maxClipSize;
     }
 
 	// Update is called once per frame
 	void Update () {
-        //----SHOOOTING------------
         if (isAutomatic && Input.GetButton("Fire1") && canFire) {
             Fire();
         }

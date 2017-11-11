@@ -4,7 +4,7 @@ using UnityEngine;
 
 //Requirements for this script to work:
 // - Player game object must be tagged as "Player"
-// - Player must have a function called AddClipToSelectedWeapon()
+// - Player (WeaponHolder) must have a function called AddClipToSelectedWeapon()
 public class AmmoBox : MonoBehaviour {
 
     private AudioSource audioSource;
@@ -23,9 +23,7 @@ public class AmmoBox : MonoBehaviour {
     }
 
     IEnumerator DeleteThis() {
-        while (audioSource.isPlaying) {
-            yield return new WaitForSeconds(0.5f);
-        }
+        yield return new WaitForSeconds(audioSource.clip.length);
         Destroy(this.gameObject);
     }
 }
