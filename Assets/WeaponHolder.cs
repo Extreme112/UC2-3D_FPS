@@ -38,4 +38,10 @@ public class WeaponHolder : MonoBehaviour {
         }
         weapons[selectedWeapon].SetActive(true);
     }
+
+
+    public void AddClipToSelectedWeapon() {
+        weapons[selectedWeapon].GetComponent<Weapon>().AddClip();
+    }
+
 }

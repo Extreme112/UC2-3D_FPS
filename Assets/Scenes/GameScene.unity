@@ -332,8 +332,12 @@ MonoBehaviour:
   oCamera: {fileID: 430933543}
   range: 50000
   bulletImpact: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 2}
+  muzzleFlash: {fileID: 2128248514}
   isAutomatic: 1
   delay: 0.1
+  ammo: 0
+  maxClipCapacity: 0
+  intialNumOfClips: 0
 --- !u!4 &560734803 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: c21fd8055cc8cdc4da37c1254275f767, type: 3}
@@ -546,7 +550,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977615110 stripped
 GameObject:
@@ -652,8 +656,54 @@ MonoBehaviour:
   oCamera: {fileID: 430933543}
   range: 100
   bulletImpact: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 2}
+  muzzleFlash: {fileID: 2128248514}
   isAutomatic: 0
   delay: 0
+  ammo: 0
+  maxClipCapacity: 0
+  intialNumOfClips: 0
+--- !u!1001 &1124803880
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.939634
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.1099999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 5.0893564
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232641428546220, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e7152d23c09aee845a9594ff1308f6a8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1149575742
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +784,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185109068
 GameObject:
@@ -837,7 +887,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391578131
 GameObject:
@@ -926,7 +976,7 @@ RectTransform:
   m_Children:
   - {fileID: 674449921}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1021,7 +1071,7 @@ Transform:
   m_Children:
   - {fileID: 430933548}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1499847421
 MonoBehaviour:
@@ -1333,7 +1383,7 @@ Transform:
   m_LocalScale: {x: 2.900445, y: 2.9004436, z: 2.9004436}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1690062247
 Prefab:
@@ -1668,8 +1718,12 @@ MonoBehaviour:
   oCamera: {fileID: 430933543}
   range: 10
   bulletImpact: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 2}
+  muzzleFlash: {fileID: 2128248514}
   isAutomatic: 0
   delay: 0
+  ammo: 0
+  maxClipCapacity: 0
+  intialNumOfClips: 0
 --- !u!1001 &2128248512
 Prefab:
   m_ObjectHideFlags: 0
@@ -1763,4 +1817,9 @@ Prefab:
 --- !u!4 &2128248513 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 2}
+  m_PrefabInternal: {fileID: 2128248512}
+--- !u!198 &2128248514 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19800004, guid: 30b4cc2728d8cec499fad63ba93785a4,
+    type: 2}
   m_PrefabInternal: {fileID: 2128248512}
