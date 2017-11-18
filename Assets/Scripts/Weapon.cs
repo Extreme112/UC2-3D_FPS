@@ -16,31 +16,39 @@ public class Weapon : MonoBehaviour {
 
     public bool isAutomatic = false; 
     bool canFire = true; 
-    public float delay; 
+    public float shootDelay;
 
     //Ammo 
-    public int ammo; //this is the weapons current ammo
-    public int maxClipCapacity; //this is the number of bullet in a clip
-    public int intialNumOfClips; //num of clips when the game starts
+    private int ammo; 
+    public float reloadTime;
+
+    public int maxClipCapacity; 
+    private int currentClipCapacity;
+    public int numberOfClips; 
 
     void Start() {
         audioSource = GetComponent<AudioSource>();
-        ammo = maxClipCapacity * intialNumOfClips; //initially, 2 clips worth of ammo available for the weapon
+        ammo = maxClipCapacity * numberOfClips; 
+        currentClipCapacity = maxClipCapacity;
     }
 
 	// Update is called once per frame
 	void Update () {
-        if (isAutomatic && Input.GetButton("Fire1") && canFire) { //single shot
+        if (isAutomatic && Input.GetButton("Fire1") && canFire) { 
             Fire();
         }
-        if (!isAutomatic && Input.GetButtonDown("Fire1") && canFire) { //full auto
+        if (!isAutomatic && Input.GetButtonDown("Fire1") && canFire) { 
             Fire();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            StartCoroutine(Reload());
         }
     }
 
     //Fire function
     void Fire() {
-        if (ammo > 0) {
+        if (currentClipCapacity > 0) {
             StartCoroutine(FireLimit());
             //Play the muzzle flash effect
             if (muzzleFlash.isStopped) {
@@ -60,14 +68,24 @@ public class Weapon : MonoBehaviour {
                     enemyHealth.TakeDamage(damage);
                 }
             }
-            ammo--;  //subtract 1 from current ammo
+            currentClipCapacity--;  //subtract 1 from current clip
         }        
     }
 
     IEnumerator FireLimit() {
         canFire = false;
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(shootDelay);
         canFire = true;
+    }
+
+    IEnumerator Reload() {
+        if (numberOfClips > 0) {
+            canFire = false;
+            currentClipCapacity = maxClipCapacity;
+            numberOfClips--;
+            yield return new WaitForSeconds(reloadTime);
+            canFire = true;
+        }
     }
 
     //add one more clip to our total ammo capacity
