@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponHolder : MonoBehaviour {
 
     public GameObject[] weapons; //this will hold our weapons
     int selectedWeapon = 0; //this is our default weapon
+
+    public Text clipCount;
+    public Text clipCapacity;
 	// Use this for initialization
 	void Start () {
         SwitchWeapon();
@@ -30,6 +34,9 @@ public class WeaponHolder : MonoBehaviour {
             }
             SwitchWeapon();
         }
+
+        clipCount.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCount().ToString();
+        clipCapacity.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCapacity().ToString();
     }
 
     void SwitchWeapon() {

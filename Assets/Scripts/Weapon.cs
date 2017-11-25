@@ -90,6 +90,14 @@ public class Weapon : MonoBehaviour {
 
     //add one more clip to our total ammo capacity
     public void AddClip() {
-        ammo = ammo + maxClipCapacity;
+        numberOfClips++;
+    }
+
+    public int GetClipCount() {
+        return numberOfClips;
+    }
+
+    public int GetClipCapacity() {
+        return currentClipCapacity;
     }
 }

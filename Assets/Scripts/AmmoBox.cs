@@ -7,8 +7,8 @@ public class AmmoBox : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             other.BroadcastMessage("AddClipToSelectedWeapon");
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
 }
