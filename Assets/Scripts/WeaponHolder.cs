@@ -35,8 +35,14 @@ public class WeaponHolder : MonoBehaviour {
             SwitchWeapon();
         }
 
-        clipCount.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCount().ToString();
-        clipCapacity.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCapacity().ToString();
+        try {
+            clipCount.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCount().ToString();
+            clipCapacity.text = weapons[selectedWeapon].GetComponent<Weapon>().GetClipCapacity().ToString();
+        }
+        catch {
+            //
+        }
+        
     }
 
     void SwitchWeapon() {
