@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour {
 
     public float speed = 10;
-    Vector3 moveDirection;
+    public Vector3 moveDirectionWorld;
+    public Vector3 moveDirectionLocal;
+    public Vector3 moveDirectionFinal;
     CharacterController characterController;
     public float gravity = 100;
     public float jumpSpeed = 200; // we will set this in the Unity editor
@@ -17,16 +19,16 @@ public class PlayerMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (characterController.isGrounded) {
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= speed;
+            moveDirectionLocal = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirectionWorld = transform.TransformDirection(moveDirectionLocal);
+            moveDirectionFinal = speed * moveDirectionWorld;
 
             if (Input.GetButton("Jump")) {
-                moveDirection.y = jumpSpeed; //then we will jump
+                moveDirectionFinal.y = jumpSpeed; //then we will jump
             }
         }
 
-        moveDirection.y -= gravity * Time.deltaTime; //add gravity
-        characterController.Move(moveDirection * Time.deltaTime);  
+        moveDirectionFinal.y -= gravity * Time.deltaTime; //add gravity
+        characterController.Move(moveDirectionFinal * Time.deltaTime);  
     }
 }

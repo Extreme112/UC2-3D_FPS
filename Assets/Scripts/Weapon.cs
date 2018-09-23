@@ -9,6 +9,9 @@ public class Weapon : MonoBehaviour {
     public GameObject oCamera;
     public float range;
     private AudioSource audioSource;
+
+    public AudioClip shootSound; //this will be our shoot sound
+    public AudioClip reloadSound; //this will be our reload sound
      
     //Bullet Impacts
     public GameObject bulletImpact; //this is our bullet impact particle system
@@ -19,13 +22,15 @@ public class Weapon : MonoBehaviour {
     public float delay; 
 
     //Ammo 
-    public int ammo; //this is the weapons current ammo
-    public int maxClipCapacity; //this is the number of bullet in a clip
-    public int intialNumOfClips; //num of clips when the game starts
+    //public int ammo; GET RID OF THIS
+    public int maxClipCapacity; //this is how many bullets a clip can hold
+    public int numOfClips; //rename to numOfClips
+    public int currentClipCapacity; //this is how many bullets the current clip has
+    public float reload_delay; //this is how long it takes to reload the weapon
 
     void Start() {
         audioSource = GetComponent<AudioSource>();
-        ammo = maxClipCapacity * intialNumOfClips; //initially, 2 clips worth of ammo available for the weapon
+        audioSource.clip = shootSound;
     }
 
 	// Update is called once per frame
@@ -36,11 +41,17 @@ public class Weapon : MonoBehaviour {
         if (!isAutomatic && Input.GetButtonDown("Fire1") && canFire) { //full auto
             Fire();
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && numOfClips > 0) {
+            //Reload
+            StartCoroutine(Reloading()); //this actually lets us reload
+            numOfClips--; //subtract one from our current number of clips
+        }
     }
 
     //Fire function
     void Fire() {
-        if (ammo > 0) {
+        if (currentClipCapacity > 0) {
             StartCoroutine(FireLimit());
             //Play the muzzle flash effect
             if (muzzleFlash.isStopped) {
@@ -60,7 +71,7 @@ public class Weapon : MonoBehaviour {
                     enemyHealth.TakeDamage(damage);
                 }
             }
-            ammo--;  //subtract 1 from current ammo
+            currentClipCapacity--;  //subtract 1 from current ammo
         }        
     }
 
@@ -70,8 +81,20 @@ public class Weapon : MonoBehaviour {
         canFire = true;
     }
 
-    //add one more clip to our total ammo capacity
+    IEnumerator Reloading() {
+        audioSource.clip = reloadSound;
+        audioSource.Stop();
+        audioSource.Play();
+        canFire = false; //disable player from firing
+        currentClipCapacity = maxClipCapacity; //"reload"
+        yield return new WaitForSeconds(reloadSound.length); //wait  for a certain delay
+        canFire = true; //let the player fire again
+
+        audioSource.clip = shootSound; //I FORGOT THIS PART
+    }
+
+
     public void AddClip() {
-        ammo = ammo + maxClipCapacity;
+        numOfClips++; //increment the num of clips you have
     }
 }
